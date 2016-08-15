@@ -1,0 +1,134 @@
+[2016-08-15 12:55:43,174] {F:\Dev\calibre-web\cps\book_formats.py:12} WARNING - cannot import Image, generating pdf covers for pdf uploads will not work: MagickWand shared library not found.
+You probably had not installed ImageMagick library.
+Try to install:
+  http://docs.wand-py.org/en/latest/guide/install.html#install-imagemagick-on-windows
+[2016-08-15 12:55:43,190] {F:\Dev\calibre-web\cps\book_formats.py:25} WARNING - cannot import epub, extracting epub metadata will not work: No module named lxml
+[2016-08-15 12:55:43,191] {F:\Dev\calibre-web\cps\book_formats.py:32} WARNING - cannot import fb2, extracting fb2 metadata will not work: No module named lxml
+[2016-08-15 12:55:45,454] {F:\Dev\calibre-web\vendor\flask\app.py:1423} ERROR - Exception on /shelf/1 [GET]
+Traceback (most recent call last):
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "F:\Dev\calibre-web\vendor\flask_login.py", line 717, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\Dev\calibre-web\cps\web.py", line 740, in show_shelf
+    return render_template('shelf.html', entries=result, title=_(u"Shelf: '%(name)s'" ,name=shelf.name), shelf=shelf)
+NameError: global name '_' is not defined
+[2016-08-15 12:57:03,473] {F:\Dev\calibre-web\cps\book_formats.py:12} WARNING - cannot import Image, generating pdf covers for pdf uploads will not work: MagickWand shared library not found.
+You probably had not installed ImageMagick library.
+Try to install:
+  http://docs.wand-py.org/en/latest/guide/install.html#install-imagemagick-on-windows
+[2016-08-15 12:57:03,487] {F:\Dev\calibre-web\cps\book_formats.py:25} WARNING - cannot import epub, extracting epub metadata will not work: No module named lxml
+[2016-08-15 12:57:03,490] {F:\Dev\calibre-web\cps\book_formats.py:32} WARNING - cannot import fb2, extracting fb2 metadata will not work: No module named lxml
+[2016-08-15 12:57:07,368] {F:\Dev\calibre-web\vendor\flask\app.py:1423} ERROR - Exception on /shelf/1 [GET]
+Traceback (most recent call last):
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "F:\Dev\calibre-web\vendor\flask_login.py", line 717, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\Dev\calibre-web\cps\web.py", line 738, in show_shelf
+    return render_template('shelf.html', entries=result, title="Collection: '%s'" % shelf.name, shelf=shelf)
+  File "F:\Dev\calibre-web\vendor\flask\templating.py", line 128, in render_template
+    context, ctx.app)
+  File "F:\Dev\calibre-web\vendor\flask\templating.py", line 110, in _render
+    rv = template.render(context)
+  File "F:\Dev\calibre-web\vendor\jinja2\environment.py", line 969, in render
+    return self.environment.handle_exception(exc_info, True)
+  File "F:\Dev\calibre-web\vendor\jinja2\environment.py", line 742, in handle_exception
+    reraise(exc_type, exc_value, tb)
+  File "F:\Dev\calibre-web\cps\templates\shelf.html", line 1, in top-level template code
+    {% extends "layout.html" %} {% block body %}
+  File "F:\Dev\calibre-web\cps\templates\layout.html", line 132, in top-level template code
+    {% block body %}{% endblock %} {% if pagination %}
+  File "F:\Dev\calibre-web\cps\templates\shelf.html", line 4, in block "body"
+    <a href=" {{ url_for('delete_shelf', shelf_id=shelf.id) }} " class="btn btn-danger">{{ _('Delete this Shelf') }} </a> {% endif %}
+UndefinedError: '_' is undefined
+[2016-08-15 13:00:23,734] {F:\Dev\calibre-web\vendor\flask\app.py:1423} ERROR - Exception on /shelf/delete/1 [GET]
+Traceback (most recent call last):
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "F:\Dev\calibre-web\vendor\flask_login.py", line 717, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\Dev\calibre-web\cps\web.py", line 899, in delete_shelf
+    flash( _("successfully deleted shelf %(name)s", name=cur_shelf.name, category="success") )
+NameError: global name '_' is not defined
+[2016-08-15 13:01:44,400] {F:\Dev\calibre-web\vendor\flask\app.py:1423} ERROR - Exception on /shelf/delete/1 [GET]
+Traceback (most recent call last):
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "F:\Dev\calibre-web\vendor\flask_login.py", line 717, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\Dev\calibre-web\cps\web.py", line 899, in delete_shelf
+    flash( "La collection suivante a ete supprimee : %(name)s", name=cur_shelf.name, category="success") )
+NameError: global name '_' is not defined
+[2016-08-15 13:01:49,904] {F:\Dev\calibre-web\vendor\flask\app.py:1423} ERROR - Exception on /shelf/1 [GET]
+Traceback (most recent call last):
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "F:\Dev\calibre-web\vendor\flask_login.py", line 717, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\Dev\calibre-web\cps\web.py", line 738, in show_shelf
+    return render_template('shelf.html', entries=result, title="Collection: '%s'" % shelf.name, shelf=shelf)
+AttributeError: 'NoneType' object has no attribute 'name'
+[2016-08-15 13:02:22,408] {F:\Dev\calibre-web\cps\book_formats.py:12} WARNING - cannot import Image, generating pdf covers for pdf uploads will not work: MagickWand shared library not found.
+You probably had not installed ImageMagick library.
+Try to install:
+  http://docs.wand-py.org/en/latest/guide/install.html#install-imagemagick-on-windows
+[2016-08-15 13:02:22,424] {F:\Dev\calibre-web\cps\book_formats.py:25} WARNING - cannot import epub, extracting epub metadata will not work: No module named lxml
+[2016-08-15 13:02:22,426] {F:\Dev\calibre-web\cps\book_formats.py:32} WARNING - cannot import fb2, extracting fb2 metadata will not work: No module named lxml
+[2016-08-15 13:02:29,917] {F:\Dev\calibre-web\vendor\flask\app.py:1423} ERROR - Exception on /shelf/delete/1 [GET]
+Traceback (most recent call last):
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1817, in wsgi_app
+    response = self.full_dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1477, in full_dispatch_request
+    rv = self.handle_user_exception(e)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1381, in handle_user_exception
+    reraise(exc_type, exc_value, tb)
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1475, in full_dispatch_request
+    rv = self.dispatch_request()
+  File "F:\Dev\calibre-web\vendor\flask\app.py", line 1461, in dispatch_request
+    return self.view_functions[rule.endpoint](**req.view_args)
+  File "F:\Dev\calibre-web\vendor\flask_login.py", line 717, in decorated_view
+    return func(*args, **kwargs)
+  File "F:\Dev\calibre-web\cps\web.py", line 899, in delete_shelf
+    flash( "La collection suivante a ete supprimee : %(name)s", name=cur_shelf.name, category="success")
+TypeError: flash() got an unexpected keyword argument 'name'

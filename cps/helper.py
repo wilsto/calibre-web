@@ -72,8 +72,8 @@ def send_mail(book_id, kindle_mail):
     msg = MIMEMultipart()
     msg['From'] = settings["mail_from"]
     msg['To'] = kindle_mail
-    msg['Subject'] = 'Send to Kindle'
-    text = 'This email has been sent via calibre web.'
+    msg['Subject'] = 'Jarvis Reader : Send to Kindle'
+    text = 'This email has been sent via Jarvis Reader.'
     msg.attach(MIMEText(text))
 
     use_ssl = settings.get('mail_use_ssl', 0)

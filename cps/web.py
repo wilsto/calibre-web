@@ -390,7 +390,7 @@ def index(page):
         off = int(int(config.NEWEST_BOOKS) * (page - 1))
         entries = db.session.query(db.Books).order_by(db.Books.last_modified.desc()).offset(off).limit(config.NEWEST_BOOKS)
     pagination = Pagination(page, config.NEWEST_BOOKS, len(db.session.query(db.Books).all()))
-    return render_template('index.html', random=random, entries=entries, pagination=pagination, title="Latest Books")
+    return render_template('index.html', random=random, entries=entries, pagination=pagination, title="Derniers livres")
 
 @app.route("/hot", defaults={'page': 1})
 @app.route('/hot/page/<int:page>')
@@ -407,15 +407,15 @@ def hot_books(page):
     pages = int(ceil(numBooks / float(config.NEWEST_BOOKS)))
     if pages > 1:
         pagination = Pagination(page, config.NEWEST_BOOKS, len(all_books.all()))
-        return render_template('index.html', random=random, entries=entries, pagination=pagination, title="Hot Books (most downloaded)")
+        return render_template('index.html', random=random, entries=entries, pagination=pagination, title="Actualites (plus telecharges)")
     else:
-        return render_template('index.html', random=random, entries=entries, title="Hot Books (most downloaded)")
+        return render_template('index.html', random=random, entries=entries, title="Actualites (plus telecharges)")
 
 @app.route("/stats")
 @login_required
 def stats():
     counter = len(db.session.query(db.Books).all())
-    return render_template('stats.html', counter=counter, title="Statistics")
+    return render_template('stats.html', counter=counter, title="Statistiques")
 
 @app.route("/discover", defaults={'page': 1})
 @app.route('/discover/page/<int:page>')
@@ -427,7 +427,7 @@ def discover(page):
         off = int(int(config.NEWEST_BOOKS) * (page - 1))
         entries = db.session.query(db.Books).order_by(func.randomblob(2)).offset(off).limit(config.NEWEST_BOOKS)
     pagination = Pagination(page, config.NEWEST_BOOKS, len(db.session.query(db.Books).all()))
-    return render_template('discover.html', entries=entries, pagination=pagination, title="Random Books")
+    return render_template('discover.html', entries=entries, pagination=pagination, title="Livres au hasard")
 
 @app.route("/book/<int:id>")
 @login_required_if_no_ano
@@ -444,7 +444,7 @@ def show_book(id):
 @login_required_if_no_ano
 def category_list():
     entries = db.session.query(db.Tags).order_by(db.Tags.name).all()
-    return render_template('categories.html', entries=entries, title="Category list")
+    return render_template('categories.html', entries=entries, title="Liste des categories")
 
 @app.route("/category/<name>")
 @login_required_if_no_ano
@@ -454,7 +454,7 @@ def category(name):
         entries = db.session.query(db.Books).filter(db.Books.tags.any(db.Tags.name.like("%" +name + "%" ))).order_by(db.Books.last_modified.desc()).all()
     else:
         entries = db.session.query(db.Books).all()
-    return render_template('index.html', random=random, entries=entries, title="Category: %s" % name)
+    return render_template('index.html', random=random, entries=entries, title="Categorie: %s" % name)
 
 @app.route("/series/<name>")
 @login_required_if_no_ano
@@ -512,14 +512,14 @@ def advanced_search():
 @login_required_if_no_ano
 def author_list():
     entries = db.session.query(db.Authors).order_by(db.Authors.sort).all()
-    return render_template('authors.html', entries=entries, title="Author list")
+    return render_template('authors.html', entries=entries, title="Liste des auteurs")
 
 @app.route("/author/<name>")
 @login_required_if_no_ano
 def author(name):
     random = db.session.query(db.Books).filter(false())
     entries = db.session.query(db.Books).filter(db.Books.authors.any(db.Authors.name.like("%" +  name + "%"))).all()
-    return render_template('index.html', random=random, entries=entries, title="Author: %s" % name)
+    return render_template('index.html', random=random, entries=entries, title="Auteur: %s" % name)
 
 @app.route("/cover/<path:cover_path>")
 @login_required_if_no_ano
@@ -556,7 +556,7 @@ def read_book(book_id):
                         fd.close()
                 zfile.close()
                 break
-    return render_template('read.html', bookid=book_id, title="Read a Book")
+    return render_template('read.html', bookid=book_id, title="Lire un livre")
 
 @app.route("/download/<int:book_id>/<format>")
 @login_required
@@ -593,7 +593,7 @@ def register():
         to_save = request.form.to_dict()
         if not to_save["nickname"] or not to_save["email"] or not to_save["password"]:
             flash("Please fill out all fields!", category="error")
-            return render_template('register.html', title="register")
+            return render_template('register.html', title="S'enregistrer")
 
         existing_user = ub.session.query(ub.User).filter(ub.User.nickname == to_save["nickname"]).first()
         existing_email = ub.session.query(ub.User).filter(ub.User.email == to_save["email"]).first()
@@ -609,14 +609,14 @@ def register():
             except:
                 ub.session.rollback()
                 flash("An unknown error occured. Please try again later.", category="error")
-                return render_template('register.html', title="register")
+                return render_template('register.html', title="S'enregistrer")
             flash("Your account has been created. Please login.", category="success")
             return redirect(url_for('login', _external=True))
         else:
             flash("This username or email address is already in use.", category="error")
-            return render_template('register.html', title="register")
+            return render_template('register.html', title="S'enregistrer")
 
-    return render_template('register.html', title="register")
+    return render_template('register.html', title="S'enregistrer")
 
 @app.route('/login', methods = ['GET', 'POST'])
 def login():
@@ -636,7 +636,7 @@ def login():
         else:
             flash("Wrong Username or Password", category="error")
 
-    return render_template('login.html', title="login")
+    return render_template('login.html', title="Se connecter")
 
 @app.route('/logout')
 @login_required
@@ -719,9 +719,9 @@ def create_shelf():
                 flash("Shelf %s created" % to_save["title"], category="success")
             except:
                 flash("There was an error", category="error")
-        return render_template('shelf_edit.html', title="create a shelf")
+        return render_template('shelf_edit.html', title="Creer une collection")
     else:
-        return render_template('shelf_edit.html', title="create a shelf")
+        return render_template('shelf_edit.html', title="Creer une collection")
 
 
 @app.route("/shelf/<int:shelf_id>")
@@ -735,7 +735,7 @@ def show_shelf(shelf_id):
             cur_book = db.session.query(db.Books).filter(db.Books.id == book.book_id).first()
             result.append(cur_book)
 
-    return render_template('shelf.html', entries=result, title="Shelf: '%s'" % shelf.name)
+    return render_template('shelf.html', entries=result, title="Collection: '%s'" % shelf.name, shelf=shelf)
 
 @app.route("/me", methods = ["GET", "POST"])
 @login_required
@@ -882,6 +882,22 @@ def edit_user(user_id):
             ub.session.rollback()
             flash("An unknown error occured.", category="error")
     return render_template("user_edit.html", new_user=0, content=content, downloads=downloads, title="Edit User %s" % content.nickname)
+
+@app.route("/shelf/delete/<int:shelf_id>")
+@login_required
+def delete_shelf(shelf_id):
+    cur_shelf = ub.session.query(ub.Shelf).filter(ub.Shelf.id == shelf_id).first()
+    deleted = 0
+    if current_user.role == ub.ROLE_ADMIN:
+        deleted = ub.session.query(ub.Shelf).filter(ub.Shelf.id == shelf_id).delete()
+    else:
+        deleted = ub.session.query(ub.Shelf).filter(ub.or_(ub.and_(ub.Shelf.user_id == int(current_user.id), ub.Shelf.id == shelf_id), ub.and_(ub.Shelf.is_public == 1, ub.Shelf.id == shelf_id))).delete()
+
+    if deleted:
+        ub.session.query(ub.BookShelf).filter(ub.BookShelf.shelf == shelf_id).delete()
+        ub.session.commit()
+        flash( "La collection suivante a ete supprimee : %s" % cur_shelf.name, category="success") 
+    return redirect(url_for('index'))
 
 @app.route("/admin/book/<int:book_id>", methods=['GET', 'POST'])
 @login_required
